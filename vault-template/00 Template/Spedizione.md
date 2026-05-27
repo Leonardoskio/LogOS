@@ -1,14 +1,17 @@
 ---
-ID:
-Data_operativa:
-Cliente:
-Merce:
-Origine:
-Destinazione:
-Autista:
-Motrice:
-Stato:
+type: spedizione
+id:
+data_operativa:
+cliente_id:
+cliente_nome:
+merce:
+tipo_carico:
+origine:
+destinazione:
+autista_id:
+motrice_id:
+stato:
 created_at:
 updated_at:
-Distanza_km:
+distanza_km:
 ---

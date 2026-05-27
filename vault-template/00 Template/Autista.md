@@ -1,7 +1,11 @@
 ---
-Nome:
-Cognome:
-Data_sacadenza_patente:
-Stato:
-Posizone:
+type: autista
+id:
+nome:
+cognome:
+data_scadenza_patente:
+stato:
+posizione:
+created_at:
+updated_at:
 ---

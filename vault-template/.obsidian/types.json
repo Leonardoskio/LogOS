@@ -3,13 +3,19 @@
     "aliases": "aliases",
     "cssclasses": "multitext",
     "tags": "tags",
-    "Spedizioni": "multitext",
-    "N_Spedizioni": "number",
-    "Chilometri_da_percorrere": "number",
-    "Chilometri_percorsi": "number",
-    "Tempo_previsto": "text",
-    "Spedizioni_effetuate": "multitext",
-    "Distanza_km": "number",
-    "CAP": "number"
+    "type": "text",
+    "id": "text",
+    "data_operativa": "date",
+    "cliente_id": "text",
+    "cliente_nome": "text",
+    "tipo_carico": "text",
+    "autista_id": "text",
+    "motrice_id": "text",
+    "stato": "text",
+    "created_at": "datetime",
+    "updated_at": "datetime",
+    "distanza_km": "number",
+    "chilometri_percorsi": "number",
+    "sede_cap": "number"
   }
 }
