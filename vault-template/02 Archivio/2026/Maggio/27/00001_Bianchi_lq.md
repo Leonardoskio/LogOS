@@ -1,0 +1,13 @@
+---
+Sede_mittente:
+Sede_destinatario:
+Data_di_partenza:
+Orario_di_partenza:
+Merce:
+Autista:
+Motrice:
+Chilometri_da_percorrere:
+Chilometri_percorsi:
+Eventi:
+Tempo_previsto:
+---
