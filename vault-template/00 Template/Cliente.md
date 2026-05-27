@@ -1,11 +1,15 @@
 ---
-Nome:
-Riferimento:
-N_Spedizioni:
-Spedizioni_effetuate:
-Città:
-Provincia:
-CAP:
-Via:
-Numero_civico:
+type: cliente
+id:
+nome:
+riferimento:
+telefono:
+email:
+sede_citta:
+sede_provincia:
+sede_cap:
+sede_via:
+sede_numero_civico:
+created_at:
+updated_at:
 ---
