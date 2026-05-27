@@ -37,8 +37,8 @@ relationships through shared IDs and future query views.
 ## Repository Layout
 
 ```text
-backend/        Node.js backend skeleton and future API logic
-frontend/       Browser interface skeleton
+backend/        Node.js backend, API routes and vault services
+frontend/       Browser interface for forms, lists and reports
 docs/           Project, setup, API and vault documentation
 prompts/        AI prompt templates used by the backend
 vault-template/ Standard Obsidian vault copied for each company
@@ -70,6 +70,32 @@ MVP request examples are stored in:
 examples/
 ```
 
+## Quick Demo
+
+The repeatable school demo is documented in:
+
+```text
+docs/demo.md
+```
+
+Short version:
+
+```bash
+cd backend
+npm install
+npm run demo:seed
+npm run dev
+```
+
+Then open:
+
+```text
+frontend/index.html
+```
+
+The demo seed creates local runtime data under `vaults/demo-company/`. Runtime
+vault data is ignored by Git.
+
 ## Development Flow
 
 Use `dev` for active development. Create feature branches from `dev`, open pull
@@ -81,6 +107,9 @@ feature branch -> dev -> main
 
 ## Current Status
 
-This repository is still in the architecture and skeleton phase. The important
-work now is to keep the data model, vault structure and backend responsibilities
-clear before implementing full behavior.
+The current MVP can create shipment notes, list archived shipments, show derived
+customer/driver/tractor relations and generate a mock AI daily report from real
+vault data.
+
+The next important features are independent entity creation, status updates for
+tractors and a later map/tracking layer.
