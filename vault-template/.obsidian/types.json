@@ -1,0 +1,15 @@
+{
+  "types": {
+    "aliases": "aliases",
+    "cssclasses": "multitext",
+    "tags": "tags",
+    "Spedizioni": "multitext",
+    "N_Spedizioni": "number",
+    "Chilometri_da_percorrere": "number",
+    "Chilometri_percorsi": "number",
+    "Tempo_previsto": "text",
+    "Spedizioni_effetuate": "multitext",
+    "Distanza_km": "number",
+    "CAP": "number"
+  }
+}
