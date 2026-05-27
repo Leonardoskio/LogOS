@@ -13,6 +13,12 @@ Base URL during local development:
 http://localhost:3000/api
 ```
 
+Reference request payloads are stored in:
+
+```text
+examples/
+```
+
 ## Shipments
 
 ### Create Shipment

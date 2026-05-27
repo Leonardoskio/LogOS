@@ -1,0 +1,11 @@
+{
+  "nome": "Azienda Bianchi",
+  "riferimento": "Luca Bianchi",
+  "telefono": "+39 000 000000",
+  "email": "logistica@bianchi.example",
+  "sede_citta": "Milano",
+  "sede_provincia": "MI",
+  "sede_cap": "20100",
+  "sede_via": "Via Roma",
+  "sede_numero_civico": "12"
+}
