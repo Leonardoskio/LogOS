@@ -1,0 +1,13 @@
+{
+  "name": "logos-backend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Node.js backend skeleton for LogOS logistics APIs and Obsidian vault operations.",
+  "type": "module",
+  "scripts": {
+    "dev": "node src/server.js",
+    "start": "node src/server.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

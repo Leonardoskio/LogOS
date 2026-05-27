@@ -1,1 +1,13 @@
+.env
+node_modules/
+backend/node_modules/
+*.log
+.DS_Store
+
+# Runtime company vaults contain generated/company data.
+vaults/*
+!vaults/.gitkeep
+
+# Local Obsidian UI state should not be shared as project standard.
 vault-template/.obsidian/workspace.json
+vault-template/.obsidian/workspace-mobile.json

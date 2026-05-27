@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LogOS</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <h1>LogOS</h1>
+          <p>Centro operativo logistico</p>
+        </div>
+        <span id="system-status" class="status-pill">Backend non collegato</span>
+      </header>
+
+      <section class="grid">
+        <article class="panel">
+          <h2>Nuova spedizione</h2>
+          <p>Il form inviera dati strutturati al backend, che creera la nota in archivio.</p>
+        </article>
+
+        <article class="panel">
+          <h2>Archivio</h2>
+          <p>Le spedizioni saranno organizzate per data operativa in Obsidian.</p>
+        </article>
+
+        <article class="panel">
+          <h2>Clienti</h2>
+          <p>Ogni cliente mostrera le spedizioni collegate tramite cliente_id.</p>
+        </article>
+
+        <article class="panel">
+          <h2>Motrici</h2>
+          <p>Lo stato live verra gestito dal backend; il vault conterra storico e snapshot.</p>
+        </article>
+      </section>
+    </main>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
