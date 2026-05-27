@@ -69,6 +69,7 @@ Common error codes:
 ```text
 400 missing_required_field
 400 invalid_date
+400 invalid_id
 400 invalid_tipo_carico
 400 invalid_stato
 400 invalid_number
