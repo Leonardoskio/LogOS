@@ -64,6 +64,12 @@ docs/data-model.md
 Frontend forms, backend validation, Markdown templates and AI prompts should use
 those field names before introducing new ones.
 
+Example request payloads for the MVP live in:
+
+```text
+examples/
+```
+
 ## Development Flow
 
 Use `dev` for active development. Create feature branches from `dev`, open pull
