@@ -1,0 +1,83 @@
+:root {
+  color-scheme: light;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f7f8;
+  color: #162025;
+}
+
+body {
+  margin: 0;
+}
+
+.app-shell {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+.topbar p {
+  color: #5d6b73;
+  margin-top: 4px;
+}
+
+.status-pill {
+  border: 1px solid #cfd8dc;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: #ffffff;
+  color: #45545c;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.panel {
+  border: 1px solid #d7e0e4;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 18px;
+}
+
+.panel h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.panel p {
+  color: #56666e;
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
