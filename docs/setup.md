@@ -1,8 +1,7 @@
 # Setup
 
-This repository is currently a project skeleton. The setup below explains how
-to clone it, work on the correct branch and prepare the future backend/vault
-workflow.
+This document explains how to clone LogOS, run the current MVP and work on the
+correct branch.
 
 ## Requirements
 
@@ -48,8 +47,49 @@ npm install
 npm run dev
 ```
 
-At the moment backend files are mostly skeletons. Implementation should keep the
-responsibilities documented in `docs/api-contract.md`.
+The backend listens on:
+
+```text
+http://localhost:3000
+```
+
+The API base URL is:
+
+```text
+http://localhost:3000/api
+```
+
+## Demo Data
+
+To generate a repeatable local demo vault:
+
+```bash
+cd backend
+npm run demo:seed
+```
+
+The command resets only:
+
+```text
+vaults/demo-company/
+```
+
+It creates example shipments and one mock AI daily report. Details are in:
+
+```text
+docs/demo.md
+```
+
+## Frontend
+
+The frontend is static and can be opened directly in the browser:
+
+```text
+frontend/index.html
+```
+
+Run the backend before opening the frontend, otherwise the interface will show
+`Backend non collegato`.
 
 ## Obsidian Vault Template
 
@@ -61,6 +101,12 @@ vault-template/
 
 Do not put real company shipments in `vault-template/02 Archivio`. Runtime data
 belongs in generated vaults under `vaults/`.
+
+For demo or local testing, open this generated vault in Obsidian:
+
+```text
+vaults/demo-company/
+```
 
 ## Git Branches
 

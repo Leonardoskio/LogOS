@@ -17,3 +17,13 @@ Recommended manual flow:
 
 The backend is responsible for generating official IDs, timestamps, archive
 paths and Markdown files.
+
+For a full repeatable demo, prefer:
+
+```bash
+cd backend
+npm run demo:seed
+```
+
+That command creates a local runtime vault with multiple shipment notes and one
+mock AI report. The generated vault is ignored by Git.
