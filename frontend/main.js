@@ -13,6 +13,10 @@ const shipmentsList = document.querySelector("#shipments-list");
 const customersList = document.querySelector("#customers-list");
 const driversList = document.querySelector("#drivers-list");
 const tractorsList = document.querySelector("#tractors-list");
+const aiReportForm = document.querySelector("#ai-report-form");
+const aiReportButton = document.querySelector("#ai-report-button");
+const aiReportMeta = document.querySelector("#ai-report-meta");
+const aiReportOutput = document.querySelector("#ai-report-output");
 
 checkBackendStatus().then(() => {
   if (appState.backendConnected) {
@@ -35,6 +39,13 @@ if (shipmentForm) {
 if (refreshButton) {
   refreshButton.addEventListener("click", () => {
     loadOverview();
+  });
+}
+
+if (aiReportForm) {
+  aiReportForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    await generateDailyReport(new FormData(aiReportForm));
   });
 }
 
@@ -201,6 +212,41 @@ async function loadRelatedShipments(type, id, label) {
   }
 }
 
+async function generateDailyReport(formData) {
+  setReportLoading(true);
+  renderReport("Generazione report in corso...", "muted");
+
+  try {
+    const response = await fetch(`${appState.apiBaseUrl}/ai/report-giornaliero`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        data: getValue(formData, "data")
+      })
+    });
+    const body = await response.json();
+
+    if (!response.ok) {
+      const apiError = body.error || {};
+      throw new Error(apiError.message || "Errore durante la generazione del report");
+    }
+
+    const report = body.data;
+    aiReportMeta.className = "report-meta success";
+    aiReportMeta.textContent = `${report.spedizioni_count} spedizioni analizzate - ${report.path}`;
+    aiReportOutput.className = "report-output";
+    aiReportOutput.textContent = report.markdown;
+    appState.backendConnected = true;
+    renderBackendStatus();
+  } catch (error) {
+    renderReport(error.message, "error");
+  } finally {
+    setReportLoading(false);
+  }
+}
+
 async function apiGet(path) {
   const response = await fetch(`${appState.apiBaseUrl}${path}`);
   const body = await response.json();
@@ -314,6 +360,20 @@ function setLoading(isLoading) {
   if (!submitButton) return;
   submitButton.disabled = isLoading;
   submitButton.textContent = isLoading ? "Creazione..." : "Crea spedizione";
+}
+
+function setReportLoading(isLoading) {
+  if (!aiReportButton) return;
+  aiReportButton.disabled = isLoading;
+  aiReportButton.textContent = isLoading ? "Generazione..." : "Genera report";
+}
+
+function renderReport(message, variant) {
+  if (!aiReportMeta || !aiReportOutput) return;
+  aiReportMeta.className = `report-meta ${variant}`;
+  aiReportMeta.textContent = message;
+  aiReportOutput.className = `report-output ${variant}`;
+  aiReportOutput.textContent = variant === "error" ? "Report non generato." : "";
 }
 
 function escapeHtml(value) {

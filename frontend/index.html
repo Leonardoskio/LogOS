@@ -133,6 +133,21 @@
           </section>
         </div>
       </section>
+
+      <section class="panel ai-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Report AI giornaliero</h2>
+            <p class="panel-subtitle">Report mock generato dalle spedizioni archiviate nel vault.</p>
+          </div>
+          <form id="ai-report-form" class="inline-form">
+            <input name="data" type="date" value="2026-05-27" required aria-label="Data report">
+            <button type="submit" id="ai-report-button">Genera report</button>
+          </form>
+        </div>
+        <div id="ai-report-meta" class="report-meta muted">Nessun report generato.</div>
+        <pre id="ai-report-output" class="report-output muted">Il report apparira qui.</pre>
+      </section>
     </main>
 
     <script src="./main.js"></script>
