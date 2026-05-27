@@ -1,0 +1,14 @@
+---
+ID:
+Data_operativa:
+Cliente:
+Merce:
+Origine:
+Destinazione:
+Autista:
+Motrice:
+Stato:
+created_at:
+updated_at:
+Distanza_km:
+---
