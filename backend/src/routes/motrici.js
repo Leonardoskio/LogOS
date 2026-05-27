@@ -1,11 +1,19 @@
-/**
- * Tractor routes.
- *
- * Planned endpoints:
- * - GET /api/motrici
- * - GET /api/motrici/:id
- * - POST /api/motrici
- * - PATCH /api/motrici/:id/stato
- *
- * Frequent real-time updates should not be written directly to Markdown.
- */
+import { listRelatedEntities, listShipmentNotes, readRelatedEntity } from "../services/vaultService.js";
+
+export async function listTractors(appConfig) {
+  return {
+    data: await listRelatedEntities(appConfig, "motrici")
+  };
+}
+
+export async function readTractor(id, appConfig) {
+  return {
+    data: await readRelatedEntity(appConfig, "motrici", id)
+  };
+}
+
+export async function listTractorShipments(id, appConfig) {
+  return {
+    data: await listShipmentNotes(appConfig, { motrice_id: id })
+  };
+}

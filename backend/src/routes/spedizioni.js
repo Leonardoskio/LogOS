@@ -1,4 +1,4 @@
-import { createShipmentNote } from "../services/vaultService.js";
+import { createShipmentNote, listShipmentNotes, readShipmentNote } from "../services/vaultService.js";
 
 const REQUIRED_FIELDS = [
   "data_operativa",
@@ -41,6 +41,26 @@ export async function createShipment(body, appConfig) {
       file: createdShipment.file,
       path: createdShipment.path
     }
+  };
+}
+
+export async function listShipments(queryParams, appConfig) {
+  const filters = {};
+  for (const field of ["id", "cliente_id", "autista_id", "motrice_id", "data_operativa", "stato", "tipo_carico"]) {
+    const value = queryParams.get(field);
+    if (value) filters[field] = value;
+  }
+
+  return {
+    data: await listShipmentNotes(appConfig, filters)
+  };
+}
+
+export async function readShipment(id, appConfig) {
+  const shipment = await readShipmentNote(appConfig, id);
+
+  return {
+    data: shipment
   };
 }
 

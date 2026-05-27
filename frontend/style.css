@@ -81,6 +81,7 @@ h2 {
   grid-template-columns: minmax(0, 2fr) minmax(280px, 0.9fr);
   gap: 16px;
   align-items: start;
+  margin-bottom: 16px;
 }
 
 .panel {
@@ -96,6 +97,12 @@ h2 {
   gap: 16px;
   align-items: center;
   margin-bottom: 18px;
+}
+
+.panel-subtitle {
+  color: #63727a;
+  font-size: 14px;
+  margin-top: 4px;
 }
 
 .form-grid {
@@ -206,6 +213,102 @@ button:disabled {
   margin: 0;
 }
 
+.relations {
+  display: grid;
+  gap: 16px;
+}
+
+.archive-panel {
+  min-height: 260px;
+}
+
+.entity-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.list-box,
+.entity-list {
+  display: grid;
+  gap: 10px;
+}
+
+.list-box.muted,
+.entity-list.muted {
+  color: #65737a;
+}
+
+.list-box.error,
+.entity-list.error {
+  color: #8f2f20;
+}
+
+.shipment-item {
+  border: 1px solid #dde6ea;
+  border-radius: 8px;
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+}
+
+.shipment-item > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.shipment-item span,
+.shipment-item small {
+  color: #5a6870;
+}
+
+.shipment-item dl {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+}
+
+.shipment-item dt {
+  color: #65737a;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.shipment-item dd {
+  margin: 2px 0 0;
+}
+
+.entity-button {
+  align-items: center;
+  background: #f8fafb;
+  border: 1px solid #d7e0e4;
+  color: #172126;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  text-align: left;
+  width: 100%;
+}
+
+.entity-button:hover {
+  background: #eef6f9;
+}
+
+.entity-button strong {
+  align-items: center;
+  background: #176b87;
+  border-radius: 999px;
+  color: #ffffff;
+  display: inline-flex;
+  font-size: 13px;
+  justify-content: center;
+  min-width: 28px;
+  padding: 4px 8px;
+}
+
 @media (max-width: 860px) {
   .topbar {
     align-items: flex-start;
@@ -213,6 +316,10 @@ button:disabled {
   }
 
   .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .entity-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -225,6 +332,15 @@ button:disabled {
 
   .panel-header {
     align-items: stretch;
+    display: grid;
+  }
+
+  .shipment-item > div:first-child,
+  .shipment-item dl {
+    grid-template-columns: 1fr;
+  }
+
+  .shipment-item > div:first-child {
     display: grid;
   }
 }

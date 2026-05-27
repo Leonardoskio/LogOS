@@ -103,6 +103,36 @@
           <div id="result-box" class="result-box muted">Nessuna spedizione creata.</div>
         </aside>
       </section>
+
+      <section class="relations">
+        <div class="panel archive-panel">
+          <div class="panel-header">
+            <div>
+              <h2>Archivio spedizioni</h2>
+              <p id="active-filter" class="panel-subtitle">Tutte le spedizioni</p>
+            </div>
+            <button type="button" id="refresh-button">Aggiorna liste</button>
+          </div>
+          <div id="shipments-list" class="list-box">Caricamento archivio...</div>
+        </div>
+
+        <div class="entity-grid">
+          <section class="panel">
+            <h2>Clienti</h2>
+            <div id="customers-list" class="entity-list">Caricamento clienti...</div>
+          </section>
+
+          <section class="panel">
+            <h2>Autisti</h2>
+            <div id="drivers-list" class="entity-list">Caricamento autisti...</div>
+          </section>
+
+          <section class="panel">
+            <h2>Motrici</h2>
+            <div id="tractors-list" class="entity-list">Caricamento motrici...</div>
+          </section>
+        </div>
+      </section>
     </main>
 
     <script src="./main.js"></script>
