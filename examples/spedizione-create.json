@@ -1,0 +1,13 @@
+{
+  "data_operativa": "2026-05-27",
+  "cliente_id": "azienda-bianchi",
+  "cliente_nome": "Azienda Bianchi",
+  "merce": "Liquido alimentare",
+  "tipo_carico": "LQ",
+  "origine": "Centro operativo",
+  "destinazione": "Via Roma 12, Milano",
+  "autista_id": "mario-rossi",
+  "motrice_id": "AB123CD",
+  "distanza_km": 230,
+  "note": "Scarico entro le 10:00"
+}
