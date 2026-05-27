@@ -1,5 +1,6 @@
 import { createServer } from "node:http";
 import { config } from "./config.js";
+import { createDailyReport } from "./routes/ai.js";
 import { listDrivers, listDriverShipments, readDriver } from "./routes/autisti.js";
 import { listCustomers, listCustomerShipments, readCustomer } from "./routes/clienti.js";
 import { listTractors, listTractorShipments, readTractor } from "./routes/motrici.js";
@@ -23,6 +24,13 @@ const server = createServer(async (req, res) => {
           service: "logos-backend"
         }
       });
+      return;
+    }
+
+    if (req.method === "POST" && url.pathname === "/api/ai/report-giornaliero") {
+      const body = await readJsonBody(req);
+      const result = await createDailyReport(body, config);
+      sendJson(res, 200, result);
       return;
     }
 

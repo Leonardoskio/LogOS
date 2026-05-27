@@ -597,7 +597,8 @@ Backend behavior:
 1. read shipments for the requested data
 2. pass structured data to aiService
 3. use mockAiProvider during MVP development
-4. return Markdown report text
+4. save the generated Markdown report under the active vault 03 AI area
+5. return Markdown report metadata and text
 ```
 
 Success response:
@@ -607,6 +608,10 @@ Success response:
   "data": {
     "type": "report_giornaliero",
     "data": "2026-05-27",
+    "provider": "mock",
+    "spedizioni_count": 1,
+    "shipment_ids": ["SP-2026-00001"],
+    "path": "03 AI/Report/Giornalieri/2026-05-27.md",
     "markdown": "# Report giornaliero - 2026-05-27..."
   }
 }

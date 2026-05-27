@@ -85,6 +85,23 @@ export async function readShipmentNote(appConfig, id) {
   };
 }
 
+export async function saveAiReport(appConfig, data, markdown) {
+  await ensureRuntimeVault(appConfig);
+
+  const relativePath = `03 AI/Report/Giornalieri/${data}.md`;
+  const absolutePath = path.join(appConfig.activeVaultPath, relativePath);
+
+  await mkdir(path.dirname(absolutePath), { recursive: true });
+
+  try {
+    await writeFile(absolutePath, markdown, "utf8");
+  } catch (error) {
+    throw httpError(500, "vault_write_failed", `Unable to write AI report: ${error.message}`);
+  }
+
+  return relativePath;
+}
+
 export async function listRelatedEntities(appConfig, relation) {
   const shipments = await listShipmentNotes(appConfig);
   const entities = new Map();
@@ -220,9 +237,13 @@ function toShipmentSummary(frontmatter, relativePath) {
     data_operativa: frontmatter.data_operativa || "",
     cliente_id: frontmatter.cliente_id || "",
     cliente_nome: frontmatter.cliente_nome || "",
+    merce: frontmatter.merce || "",
     tipo_carico: frontmatter.tipo_carico || "",
+    origine: frontmatter.origine || "",
+    destinazione: frontmatter.destinazione || "",
     autista_id: frontmatter.autista_id || "",
     motrice_id: frontmatter.motrice_id || "",
+    distanza_km: frontmatter.distanza_km || "",
     stato: frontmatter.stato || "",
     path: relativePath
   };
