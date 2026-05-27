@@ -1,6 +1,9 @@
 import { createServer } from "node:http";
 import { config } from "./config.js";
-import { createShipment } from "./routes/spedizioni.js";
+import { listDrivers, listDriverShipments, readDriver } from "./routes/autisti.js";
+import { listCustomers, listCustomerShipments, readCustomer } from "./routes/clienti.js";
+import { listTractors, listTractorShipments, readTractor } from "./routes/motrici.js";
+import { createShipment, listShipments, readShipment } from "./routes/spedizioni.js";
 
 const server = createServer(async (req, res) => {
   setCorsHeaders(res);
@@ -27,6 +30,68 @@ const server = createServer(async (req, res) => {
       const body = await readJsonBody(req);
       const result = await createShipment(body, config);
       sendJson(res, 201, result);
+      return;
+    }
+
+    if (req.method === "GET" && url.pathname === "/api/spedizioni") {
+      sendJson(res, 200, await listShipments(url.searchParams, config));
+      return;
+    }
+
+    const shipmentMatch = url.pathname.match(/^\/api\/spedizioni\/([^/]+)$/);
+    if (req.method === "GET" && shipmentMatch) {
+      sendJson(res, 200, await readShipment(decodeURIComponent(shipmentMatch[1]), config));
+      return;
+    }
+
+    if (req.method === "GET" && url.pathname === "/api/clienti") {
+      sendJson(res, 200, await listCustomers(config));
+      return;
+    }
+
+    const customerShipmentsMatch = url.pathname.match(/^\/api\/clienti\/([^/]+)\/spedizioni$/);
+    if (req.method === "GET" && customerShipmentsMatch) {
+      sendJson(res, 200, await listCustomerShipments(decodeURIComponent(customerShipmentsMatch[1]), config));
+      return;
+    }
+
+    const customerMatch = url.pathname.match(/^\/api\/clienti\/([^/]+)$/);
+    if (req.method === "GET" && customerMatch) {
+      sendJson(res, 200, await readCustomer(decodeURIComponent(customerMatch[1]), config));
+      return;
+    }
+
+    if (req.method === "GET" && url.pathname === "/api/autisti") {
+      sendJson(res, 200, await listDrivers(config));
+      return;
+    }
+
+    const driverShipmentsMatch = url.pathname.match(/^\/api\/autisti\/([^/]+)\/spedizioni$/);
+    if (req.method === "GET" && driverShipmentsMatch) {
+      sendJson(res, 200, await listDriverShipments(decodeURIComponent(driverShipmentsMatch[1]), config));
+      return;
+    }
+
+    const driverMatch = url.pathname.match(/^\/api\/autisti\/([^/]+)$/);
+    if (req.method === "GET" && driverMatch) {
+      sendJson(res, 200, await readDriver(decodeURIComponent(driverMatch[1]), config));
+      return;
+    }
+
+    if (req.method === "GET" && url.pathname === "/api/motrici") {
+      sendJson(res, 200, await listTractors(config));
+      return;
+    }
+
+    const tractorShipmentsMatch = url.pathname.match(/^\/api\/motrici\/([^/]+)\/spedizioni$/);
+    if (req.method === "GET" && tractorShipmentsMatch) {
+      sendJson(res, 200, await listTractorShipments(decodeURIComponent(tractorShipmentsMatch[1]), config));
+      return;
+    }
+
+    const tractorMatch = url.pathname.match(/^\/api\/motrici\/([^/]+)$/);
+    if (req.method === "GET" && tractorMatch) {
+      sendJson(res, 200, await readTractor(decodeURIComponent(tractorMatch[1]), config));
       return;
     }
 

@@ -1,11 +1,19 @@
-/**
- * Driver routes.
- *
- * Planned endpoints:
- * - GET /api/autisti
- * - GET /api/autisti/:id
- * - POST /api/autisti
- *
- * Driver notes live under 01 Home/Autisti. Live position should later be served
- * by backend state, with the vault storing only stable fields or snapshots.
- */
+import { listRelatedEntities, listShipmentNotes, readRelatedEntity } from "../services/vaultService.js";
+
+export async function listDrivers(appConfig) {
+  return {
+    data: await listRelatedEntities(appConfig, "autisti")
+  };
+}
+
+export async function readDriver(id, appConfig) {
+  return {
+    data: await readRelatedEntity(appConfig, "autisti", id)
+  };
+}
+
+export async function listDriverShipments(id, appConfig) {
+  return {
+    data: await listShipmentNotes(appConfig, { autista_id: id })
+  };
+}
