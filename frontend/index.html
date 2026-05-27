@@ -13,29 +13,95 @@
           <h1>LogOS</h1>
           <p>Centro operativo logistico</p>
         </div>
-        <span id="system-status" class="status-pill">Backend non collegato</span>
+        <span id="system-status" class="status-pill status-offline">Backend non collegato</span>
       </header>
 
-      <section class="grid">
-        <article class="panel">
-          <h2>Nuova spedizione</h2>
-          <p>Il form inviera dati strutturati al backend, che creera la nota in archivio.</p>
-        </article>
+      <section class="workspace">
+        <form id="shipment-form" class="panel form-panel">
+          <div class="panel-header">
+            <h2>Nuova spedizione</h2>
+            <button type="submit" id="submit-button">Crea spedizione</button>
+          </div>
 
-        <article class="panel">
-          <h2>Archivio</h2>
-          <p>Le spedizioni saranno organizzate per data operativa in Obsidian.</p>
-        </article>
+          <div class="form-grid">
+            <label>
+              Data operativa
+              <input name="data_operativa" type="date" value="2026-05-27" required>
+            </label>
 
-        <article class="panel">
-          <h2>Clienti</h2>
-          <p>Ogni cliente mostrera le spedizioni collegate tramite cliente_id.</p>
-        </article>
+            <label>
+              Stato
+              <select name="stato">
+                <option value="richiesta">richiesta</option>
+                <option value="programmata">programmata</option>
+                <option value="in_viaggio">in_viaggio</option>
+                <option value="completata">completata</option>
+                <option value="annullata">annullata</option>
+              </select>
+            </label>
 
-        <article class="panel">
-          <h2>Motrici</h2>
-          <p>Lo stato live verra gestito dal backend; il vault conterra storico e snapshot.</p>
-        </article>
+            <label>
+              Cliente
+              <input name="cliente_nome" value="Azienda Bianchi" required>
+            </label>
+
+            <label>
+              Cliente ID
+              <input name="cliente_id" value="azienda-bianchi" pattern="[a-z0-9]+(-[a-z0-9]+)*" required>
+            </label>
+
+            <label class="wide">
+              Merce
+              <input name="merce" value="Liquido alimentare" required>
+            </label>
+
+            <label>
+              Tipo carico
+              <select name="tipo_carico" required>
+                <option value="LQ">LQ</option>
+                <option value="FR">FR</option>
+                <option value="SEC">SEC</option>
+                <option value="ADR">ADR</option>
+                <option value="GEN">GEN</option>
+              </select>
+            </label>
+
+            <label>
+              Distanza km
+              <input name="distanza_km" type="number" min="0" step="1" value="230">
+            </label>
+
+            <label>
+              Origine
+              <input name="origine" value="Centro operativo" required>
+            </label>
+
+            <label>
+              Destinazione
+              <input name="destinazione" value="Via Roma 12, Milano" required>
+            </label>
+
+            <label>
+              Autista ID
+              <input name="autista_id" value="mario-rossi" pattern="[a-z0-9]+(-[a-z0-9]+)*">
+            </label>
+
+            <label>
+              Motrice ID
+              <input name="motrice_id" value="AB123CD" pattern="[A-Z0-9-]+">
+            </label>
+
+            <label class="wide">
+              Note operative
+              <textarea name="note" rows="4">Scarico entro le 10:00</textarea>
+            </label>
+          </div>
+        </form>
+
+        <aside class="panel result-panel" aria-live="polite">
+          <h2>Risultato</h2>
+          <div id="result-box" class="result-box muted">Nessuna spedizione creata.</div>
+        </aside>
       </section>
     </main>
 
