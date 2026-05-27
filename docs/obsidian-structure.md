@@ -4,6 +4,8 @@ The Obsidian vault is the readable operational archive for LogOS. It is not a
 free-form note space: each note type has a stable schema and relationships are
 expressed through IDs.
 
+The detailed field schema is defined in `docs/data-model.md`.
+
 ## Template Vault
 
 ```text
@@ -52,6 +54,9 @@ centro_operativo
 The shipment is the central fact. Customers, drivers and tractors are connected
 to shipments through IDs such as `cliente_id`, `autista_id` and `motrice_id`.
 
+There is no separate `sede` entity in the MVP. Customer sede fields live inside
+customer notes. The company base is represented by `Centro_operativo.md`.
+
 ## Archive Rule
 
 Shipments are stored only in the archive:
@@ -66,6 +71,23 @@ Example:
 
 ```text
 02 Archivio/2026/Maggio/27/SP-2026-00001_bianchi_LQ.md
+```
+
+Month folder names are Italian and title-case:
+
+```text
+Gennaio
+Febbraio
+Marzo
+Aprile
+Maggio
+Giugno
+Luglio
+Agosto
+Settembre
+Ottobre
+Novembre
+Dicembre
 ```
 
 ## ID and Filename Rule
@@ -89,6 +111,9 @@ SP-2026-00001 = stable shipment ID
 bianchi       = customer slug for readability
 LQ            = cargo type code
 ```
+
+Only the backend generates official shipment IDs. Users can see them but should
+not type them manually during normal shipment creation.
 
 ## Derived Data
 

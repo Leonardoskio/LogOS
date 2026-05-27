@@ -41,6 +41,7 @@ and writes shipment notes inside them.
 When changing field names, update:
 
 ```text
+docs/data-model.md
 00 Template/*.md
 docs/obsidian-structure.md
 backend services that read/write those fields

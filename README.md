@@ -53,6 +53,17 @@ archive placeholders and AI dashboard pages.
 `vaults/` is where real company vaults will be created at runtime. Those files
 can contain operational data and should not be committed to the repository.
 
+## Data Model
+
+The MVP data model is defined in:
+
+```text
+docs/data-model.md
+```
+
+Frontend forms, backend validation, Markdown templates and AI prompts should use
+those field names before introducing new ones.
+
 ## Development Flow
 
 Use `dev` for active development. Create feature branches from `dev`, open pull

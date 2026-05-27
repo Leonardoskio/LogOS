@@ -14,6 +14,7 @@ stato:
 created_at:
 updated_at:
 distanza_km:
+note:
 ---
 
 # Spedizione {{id}}
