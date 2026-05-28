@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LogOS — Centro Operativo Logistico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1>LogOS</h1>
+            <p>Centro Operativo Logistico</p>
+          </div>
+        </div>
+        <span id="system-status" class="status-pill status-offline">
+          <span class="status-dot" aria-hidden="true"></span>
+          Backend non collegato
+        </span>
+      </div>
+    </header>
+    <main class="app-shell">
+      <section class="workspace">
+        <form id="shipment-form" class="panel form-panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/>
+              </svg>
+              <h2>Nuova spedizione</h2>
+            </div>
+          </div>
+          <div class="form-grid">
+            <label>
+              <span class="label-text">Data operativa <em class="req">*</em></span>
+              <input name="data_operativa" type="date" value="2026-05-27" required>
+            </label>
+            <label>
+              <span class="label-text">Stato</span>
+              <select name="stato">
+                <option value="richiesta">richiesta</option>
+                <option value="programmata">programmata</option>
+                <option value="in_viaggio">in_viaggio</option>
+                <option value="completata">completata</option>
+                <option value="annullata">annullata</option>
+              </select>
+            </label>
+            <label>
+              <span class="label-text">Cliente <em class="req">*</em></span>
+              <input name="cliente_nome" value="Azienda Bianchi" required>
+            </label>
+            <label>
+              <span class="label-text">Cliente ID <em class="req">*</em></span>
+              <input name="cliente_id" value="azienda-bianchi" pattern="[a-z0-9]+(-[a-z0-9]+)*" required>
+            </label>
+            <label class="wide">
+              <span class="label-text">Merce <em class="req">*</em></span>
+              <input name="merce" value="Liquido alimentare" required>
+            </label>
+            <label>
+              <span class="label-text">Tipo carico <em class="req">*</em></span>
+              <select name="tipo_carico" required>
+                <option value="LQ">LQ — Liquido</option>
+                <option value="FR">FR — Refrigerato</option>
+                <option value="SEC">SEC — Secco</option>
+                <option value="ADR">ADR — Pericoloso</option>
+                <option value="GEN">GEN — Generico</option>
+              </select>
+            </label>
+            <label>
+              <span class="label-text">Distanza km</span>
+              <input name="distanza_km" type="number" min="0" step="1" value="230">
+            </label>
+            <label>
+              <span class="label-text">Origine <em class="req">*</em></span>
+              <input name="origine" value="Centro operativo" required>
+            </label>
+            <label>
+              <span class="label-text">Destinazione <em class="req">*</em></span>
+              <input name="destinazione" value="Via Roma 12, Milano" required>
+            </label>
+            <label>
+              <span class="label-text">Autista ID</span>
+              <input name="autista_id" value="mario-rossi" pattern="[a-z0-9]+(-[a-z0-9]+)*">
+            </label>
+            <label>
+              <span class="label-text">Motrice ID</span>
+              <input name="motrice_id" value="AB123CD" pattern="[A-Z0-9-]+">
+            </label>
+            <label class="wide">
+              <span class="label-text">Note operative</span>
+              <textarea name="note" rows="4">Scarico entro le 10:00</textarea>
+            </label>
+            <div class="wide form-actions">
+              <button type="submit" id="submit-button">
+                Crea spedizione
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14"/><path d="M13 6l6 6-6 6"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </form>
+        <aside class="panel result-panel" aria-live="polite">
+          <div class="panel-header">
+            <div class="panel-title">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/>
+              </svg>
+              <h2>Risultato</h2>
+            </div>
+          </div>
+          <div id="result-box" class="result-box muted">Nessuna spedizione creata.</div>
+        </aside>
+      </section>
+      <section class="relations">
+        <div class="panel archive-panel">
+          <div class="panel-header">
+            <div class="panel-title-block">
+              <div class="panel-title">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 4h18v4H3z"/><path d="M5 8v12h14V8"/><path d="M10 12h4"/>
+                </svg>
+                <h2>Archivio spedizioni</h2>
+              </div>
+              <p id="active-filter" class="panel-subtitle">Tutte le spedizioni</p>
+            </div>
+            <button type="button" id="refresh-button" class="btn-secondary">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/>
+              </svg>
+              Aggiorna liste
+            </button>
+          </div>
+          <div id="shipments-list" class="list-box">Caricamento archivio...</div>
+        </div>
+        <div class="entity-grid">
+          <section class="panel entity-panel">
+            <div class="panel-title">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              <h2>Clienti</h2>
+            </div>
+            <div id="customers-list" class="entity-list">Caricamento clienti...</div>
+          </section>
+          <section class="panel entity-panel">
+            <div class="panel-title">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>
+              </svg>
+              <h2>Autisti</h2>
+            </div>
+            <div id="drivers-list" class="entity-list">Caricamento autisti...</div>
+          </section>
+          <section class="panel entity-panel">
+            <div class="panel-title">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/>
+              </svg>
+              <h2>Motrici</h2>
+            </div>
+            <div id="tractors-list" class="entity-list">Caricamento motrici...</div>
+          </section>
+        </div>
+      </section>
+      <section class="panel ai-panel">
+        <div class="panel-header">
+          <div class="panel-title-block">
+            <div class="panel-title">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8z"/>
+              </svg>
+              <h2>Report AI giornaliero</h2>
+            </div>
+            <p class="panel-subtitle">Report mock generato dalle spedizioni archiviate nel vault.</p>
+          </div>
+          <form id="ai-report-form" class="inline-form">
+            <input name="data" type="date" value="2026-05-27" required aria-label="Data report">
+            <button type="submit" id="ai-report-button">Genera report</button>
+          </form>
+        </div>
+        <div id="ai-report-meta" class="report-meta muted">Nessun report generato.</div>
+        <pre id="ai-report-output" class="report-output muted">Il report apparira qui.</pre>
+      </section>
+    </main>
+    <script src="./main.js"></script>
+  </body>
+</html>
