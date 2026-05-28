@@ -78,6 +78,33 @@ The repeatable school demo is documented in:
 docs/demo.md
 ```
 
+For a desktop-style startup, use the launchers in:
+
+```text
+desktopdemo/
+```
+
+On Windows:
+
+```text
+desktopdemo/windows-vs/Start-LogOS.cmd
+```
+
+To add a Windows desktop shortcut, run:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\desktopdemo\windows-vs\install-desktop-shortcut.ps1
+```
+
+On Linux:
+
+```bash
+bash ./desktopdemo/linux-vs/start-logos.sh
+```
+
+The launchers start the backend from `backend/`, wait for the health check and
+open `frontend/index.html` in the default browser.
+
 Short version:
 
 ```bash

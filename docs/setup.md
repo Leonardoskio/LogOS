@@ -91,6 +91,68 @@ frontend/index.html
 Run the backend before opening the frontend, otherwise the interface will show
 `Backend non collegato`.
 
+## Windows Launcher
+
+For daily local use on Windows, double-click this file:
+
+```text
+desktopdemo/windows-vs/Start-LogOS.cmd
+```
+
+It checks Node.js/npm, creates `.env` from `.env.example` if missing, starts the
+backend in a `LogOS Backend` terminal, waits for:
+
+```text
+http://localhost:3000/api/health
+```
+
+and then opens:
+
+```text
+frontend/index.html
+```
+
+To create a desktop shortcut named `LogOS`, run:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\desktopdemo\windows-vs\install-desktop-shortcut.ps1
+```
+
+To stop LogOS, close the `LogOS Backend` terminal window.
+
+## Linux Launcher
+
+For daily local use on Linux, run:
+
+```bash
+bash ./desktopdemo/linux-vs/start-logos.sh
+```
+
+It checks Node.js/npm, creates `.env` from `.env.example` if missing, starts the
+backend from `backend/`, waits for:
+
+```text
+http://localhost:3000/api/health
+```
+
+and then opens:
+
+```text
+frontend/index.html
+```
+
+To create a desktop shortcut named `LogOS`, run:
+
+```bash
+bash ./desktopdemo/linux-vs/install-desktop-shortcut.sh
+```
+
+To stop the backend started by the Linux launcher, run:
+
+```bash
+bash ./desktopdemo/linux-vs/stop-logos.sh
+```
+
 ## Obsidian Vault Template
 
 Open this folder in Obsidian when editing the shared standard:
