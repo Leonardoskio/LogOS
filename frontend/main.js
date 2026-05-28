@@ -3,9 +3,12 @@ const appState = {
   backendConnected: false
 };
 
+const topbarElement = document.querySelector(".topbar");
 const statusElement = document.querySelector("#system-status");
+const statusLabelElement = statusElement?.querySelector(".status-label");
 const shipmentForm = document.querySelector("#shipment-form");
 const submitButton = document.querySelector("#submit-button");
+const submitButtonLabel = document.querySelector("#submit-label");
 const resultBox = document.querySelector("#result-box");
 const refreshButton = document.querySelector("#refresh-button");
 const activeFilterElement = document.querySelector("#active-filter");
@@ -17,6 +20,8 @@ const aiReportForm = document.querySelector("#ai-report-form");
 const aiReportButton = document.querySelector("#ai-report-button");
 const aiReportMeta = document.querySelector("#ai-report-meta");
 const aiReportOutput = document.querySelector("#ai-report-output");
+
+setDefaultDates();
 
 checkBackendStatus().then(() => {
   if (appState.backendConnected) {
@@ -130,12 +135,19 @@ function getValue(formData, field) {
 function renderBackendStatus() {
   if (!statusElement) return;
 
-  statusElement.textContent = appState.backendConnected
+  const statusText = appState.backendConnected
     ? "Backend collegato"
     : "Backend non collegato";
 
+  if (statusLabelElement) {
+    statusLabelElement.textContent = statusText;
+  } else {
+    statusElement.textContent = statusText;
+  }
+
   statusElement.classList.toggle("status-online", appState.backendConnected);
   statusElement.classList.toggle("status-offline", !appState.backendConnected);
+  topbarElement?.classList.toggle("backend-offline", !appState.backendConnected);
 }
 
 function renderCreatedShipment(shipment) {
@@ -292,7 +304,11 @@ function renderShipments(shipments) {
         </div>
         <div>
           <dt>Stato</dt>
-          <dd>${escapeHtml(shipment.stato)}</dd>
+          <dd>
+            <span class="shipment-status" data-stato="${escapeHtml(shipment.stato)}">
+              ${escapeHtml(shipment.stato)}
+            </span>
+          </dd>
         </div>
       </dl>
       <small>${escapeHtml(shipment.path)}</small>
@@ -359,7 +375,9 @@ function renderResult(message, variant) {
 function setLoading(isLoading) {
   if (!submitButton) return;
   submitButton.disabled = isLoading;
-  submitButton.textContent = isLoading ? "Creazione..." : "Crea spedizione";
+  if (submitButtonLabel) {
+    submitButtonLabel.textContent = isLoading ? "Creazione" : "Crea spedizione";
+  }
 }
 
 function setReportLoading(isLoading) {
@@ -374,6 +392,21 @@ function renderReport(message, variant) {
   aiReportMeta.textContent = message;
   aiReportOutput.className = `report-output ${variant}`;
   aiReportOutput.textContent = variant === "error" ? "Report non generato." : "";
+}
+
+function setDefaultDates() {
+  const today = getTodayDateInputValue();
+  document.querySelectorAll('input[type="date"][data-default-today="true"]').forEach((input) => {
+    if (!input.value) {
+      input.value = today;
+    }
+  });
+}
+
+function getTodayDateInputValue() {
+  const now = new Date();
+  now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+  return now.toISOString().slice(0, 10);
 }
 
 function escapeHtml(value) {
